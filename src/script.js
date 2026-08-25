@@ -8,14 +8,25 @@ function saveResults() {
   localStorage.setItem("swimResults", JSON.stringify(results));
 }
 
+
 function displayResults() {
   resultsList.innerHTML = "";
 
-  results.forEach((result) => {
-    const resultElement = document.createElement("p");
+  const recentResults = [...results]
+  .sort((a,b) => new Date(b.date) - new Date(a.date))
+  .slice(0,8);
 
-    resultElement.textContent =
-      `${result.date} | ${result.distance} ${result.stroke} | ${result.time} | ${result.sessionType}`;
+  recentResults.forEach((result) => {
+   const resultElement = document.createElement("div");
+   resultElement.className = "result-row";
+
+   resultElement.innerHTML = `
+    <div>
+      <strong>${result.distance} ${result.stroke}</strong>
+      <span>${result.date} · ${result.sessionType}</span>
+    </div>
+    <strong class="result-time">${result.time}</strong>
+   `;
 
     resultsList.appendChild(resultElement);
   });
@@ -40,20 +51,20 @@ function calculatePersonalBests() {
   return personalBests;
 }
 
+
 function displayPersonalBests() {
   pbList.innerHTML = "";
-
+  
   const personalBests = calculatePersonalBests();
-
   Object.values(personalBests).forEach((result) => {
-
-    const pbElement = document.createElement("p");
-
-    pbElement.textContent =
-      `${result.distance} ${result.stroke}: ${result.time}`;
-
-    pbList.appendChild(pbElement);
-
+   const pbElement = document.createElement("div");
+   pbElement.className = "pb-card";
+   pbElement.innerHTML = `
+     <span class="pb-event">${result.distance} ${result.stroke}</span>
+     <strong class="pb-time">${result.time}</strong>
+     <span class="pb-label">Personal best</span>
+   `;
+   pbList.appendChild(pbElement);
   });
 }
 

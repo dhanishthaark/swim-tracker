@@ -80,3 +80,74 @@ button:hover {
   padding: 10px;
   border-bottom: 1px solid #e5e7eb;
 }
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.result-row:last-child {
+  border-bottom: none;
+}
+
+.result-row div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-row span {
+  font-size: 13px;
+  color: #627d98;
+}
+
+.result-time {
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .result-row {
+    align-items: flex-start;
+  }
+
+  .result-time {
+    font-size: 16px;
+  }
+}
+
+.pb-card{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 16px;
+  margin-bottom: 10px;
+  background: #f4f8fa;
+  border-radius: 8px;
+  border-left: 4px solid #102a43;
+}
+
+.pb-card:last-child{
+  margin-bottom: 0;
+}
+
+.pb-event {
+  font-size: 14px;
+  color: #627d98;
+}
+
+.pb-time {
+  font-size: 24px;
+  color: #102a43;
+}
+
+.pb-label {
+  font-size: 12px;
+  color: #829ab1;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
